@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+<meta charset="utf-8">
+<title>GiphyTastic</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+<link rel="stylesheet" href="./GifTastic/style.css" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
+
+
+<style>
+h3 {
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+}
+form
+{
+   
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   
+}
+
+button
+{
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: green;
+    
+
+}
+.jumbotron {
+	width: 60%;
+	margin-left: 100px;
+	margin-right: 100px;
+	padding: 50px;
+}
+
+</style>
+        
+</head>
+
+
+    <body>
+
+            <div class="container">
+                    <h3>Add an Animal</h3>
+                
+                    <div id="buttons-view"></div>
+                
+                    <form id="animalForm">
+                      <label form="AnimalInput"></label>
+                      <input type="text" id="Animal-input">
+                      <br>
+                     
+                      <button id="addAnimal" type="submit" value="submit">submit</button>
+                    </form>
+                    <div id="Animal-view"></div>
+
+
+
+            <button data-animal="dog">dog</button>
+            <button data-animal="cat">cat</button>
+            <button data-animal="rabbit">rabbit</button>
+            <button data-animal="hamster">hamster</button>
+            <button data-animal="skunk">skunk</button>
+            <button data-animal="goldfish">goldfish</button>
+            <button data-animal="bird">bird</button>
+            <button data-animal="ferret">ferret</button>
+            <button data-animal="turtle">turtle</button>
+            <button data-animal="sugar glider">sugar glider</button>
+            <button data-animal="chinchilla">chinchilla</button>
+            <button data-animal="hedgehog">hedgehog</button>
+            <button data-animal="hermit crab">hermit crab</button>
+            <button data-animal="gerbil">gerbil</button>
+            <button data-animal="pygmy goat">pygmy goat</button>
+            <button data-animal="chicken">chicken</button>
+            <button data-animal="capybara">capybara</button>
+            <button data-animal="teacup pig">teacup pig</button>
+            <button data-animal="serval">serval</button>
+            <button data-animal="salemander">salemander</button>
+            <button data-animal="frog">frog</button>
+
+            <div id="gifs-appear-here" class="jumbotron"></div>
+            
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" >
+ 
+ $("#add-animal").on("click", function(event) {
+        event.preventDefault();
+        var animal = $("#animal-input").val().trim();
+        animal.push(animal);
+        renderButtons();
+});
+
+
+$("button").on("click", function() {
+      
+    var animal = $(this).attr("data-animal");
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+      animal + "&api_key=rcF6WYFDYuwaGX9psgBs9vMgj6bAq7y8&limit=10";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+     
+      .then(function(response) {
+       
+        var results = response.data;
+
+        for (var i = 0; i < results.length; i++) {
+
+          var animalDiv = $("<div>");
+
+          var p = $("<p>").text("Rating: " + results[i].rating);
+
+          var animalImage = $("<img>");
+
+          animalImage.attr("src", results[i].images.fixed_height.url);
+
+         
+          animalDiv.append(p);
+          animalDiv.append(animalImage);
+
+         
+          $("#gifs-appear-here").prepend(animalDiv);
+        }
+      });
+  });
+              
+ </script>
+
+
+    
+
+
+
+
+    </body>
+</html>
