@@ -1,0 +1,29 @@
+h3 {
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+}
+form
+{
+   
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   
+}
+
+button
+{
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: green;
+    
+
+}
+.jumbotron {
+	width: 60%;
+	margin-left: 100px;
+	margin-right: 100px;
+	padding: 50px;
+}
